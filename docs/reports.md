@@ -34,7 +34,7 @@ The stored report entity name is by default inherited from the template name. Ho
 The name of the stored file/blob is by default inherited from the entity unique _id. This can be customized using `{ "options": { "reports": { "save": true, "blobName": "myfilename" } }`
 
 ## Async
-Sending rendering request with `options.reports.save = true` will instruct the extension to save the report and add `Permanent-Link` header to the response, but the rendering is still synchronous and you receive response back after the process is finished. If you want to start the rendering process  asynchronously and receive the responds immediately you should set `options.reports.async = true`.
+Sending a rendering request with `options.reports.save = true` will instruct the extension to save the report and add `Permanent-Link` header to the response, but the rendering is still synchronous and you receive the response back after the process is finished. If you want to start the rendering process asynchronously and receive the response immediately you should set `options.reports.async = true`.
 
 > `POST:` https://jsreport-host/api/report
 > `BODY:`
@@ -48,10 +48,10 @@ Sending rendering request with `options.reports.save = true` will instruct the e
    }
 >```
 
-In this case you receive response with `Location` header containing url to the rendering status page. It will be something like `http://jsreport-host/reports/id/status`. You can then ping the status page to check if the rendering is done. In that case the response status will be `201` and the location header will contain address to the stored report.
+In this case you receive response with `Location` header containing the url to the rendering status page. It will appear in a form like `http://jsreport-host/reports/id/status`. You can then ping the status page to check if the rendering is done. In that case the response status will be `201` and the location header will contain the address to the stored report.
 
 ## Cleanup
-The reports stored from async calls are forever persisted by default. You can change this and enable automatic old reports clean up. This can be done through config.
+The reports stored from async calls persist forever by default. You can change this and enable automatic clean up of old reports. This can be done through config.
 ```json
 { 
   "extensions": { 
@@ -64,7 +64,7 @@ The reports stored from async calls are forever persisted by default. You can ch
   }
 }
 ```
-Be aware the auto cleanup logic removes also the reports produced through scheduling extension.
+Be aware that the auto-cleanup logic also removes the reports produced through scheduling extension.
 
 ## OData
 
